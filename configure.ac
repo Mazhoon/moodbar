@@ -1,16 +1,16 @@
 AC_INIT
 
 dnl versions of gstreamer and plugins-base
-GST_MAJORMINOR=0.10
-GST_REQUIRED=0.10.0
-GSTPB_REQUIRED=0.10.0
+GST_MAJORMINOR=1.0
+GST_REQUIRED=1.0.0
+GSTPB_REQUIRED=1.0.0
 
 dnl the fourth (nano) number should be 0 for a release, 1 for CVS,
 dnl and 2... for a prerelease
 
 dnl when going to/from release please set the nano correctly !
 dnl releases only do Wall, cvs and prerelease does Werror too
-AS_VERSION(moodbar, GST_PLUGIN_VERSION, 0, 1, 2, 0,
+AS_VERSION(moodbar, GST_PLUGIN_VERSION, 0, 1, 3, 0,
     GST_PLUGIN_CVS="no", GST_PLUGIN_CVS="yes")
 
 dnl AM_MAINTAINER_MODE provides the option to enable maintainer mode
@@ -145,7 +145,7 @@ if test "x${build_plugindir}" != "xno"; then
 elif test "x${prefix}" = "x$HOME"; then
   plugindir="$HOME/.gstreamer-$GST_MAJORMINOR/plugins"
 else
-  plugindir=`pkg-config --variable=pluginsdir gstreamer-0.10`
+  plugindir=`pkg-config --variable=pluginsdir gstreamer-1.0`
 fi
 AC_SUBST(plugindir)
 

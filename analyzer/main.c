@@ -118,7 +118,6 @@ bus_callback (GstBus *bus,
 static void
 cb_newpad (GstElement *dec,
            GstPad     *pad,
-           gboolean   last,
            gpointer   data)
 {
   GstCaps *caps;
@@ -126,11 +125,10 @@ cb_newpad (GstElement *dec,
   GstPad *audiopad;
   GstElement *audio = (GstElement *) data;
 
-  (void) last;  /* Unused */
   (void) dec;  /* Unused */
 
   /* Only link once */
-  audiopad = gst_element_get_pad (audio, "sink");
+  audiopad = gst_element_get_static_pad (audio, "sink");
   if (GST_PAD_IS_LINKED (audiopad)) 
     {
       g_object_unref (audiopad);
@@ -138,7 +136,7 @@ cb_newpad (GstElement *dec,
     }
 
   /* Check media type */
-  caps = gst_pad_get_caps (pad);
+  caps = gst_pad_query_caps (pad, NULL);
   str = gst_caps_get_structure (caps, 0);
   if (!g_strrstr (gst_structure_get_name (str), "audio")) 
     {
@@ -208,7 +206,7 @@ run_loop (gchar *infile, gchar *outfile)
   /* Create audio output bin */
   audio = gst_bin_new ("audiobin");
   conv  = make_element ("audioconvert", "aconv");
-  audiopad = gst_element_get_pad (conv, "sink");
+  audiopad = gst_element_get_static_pad (conv, "sink");
 
   /* Create analyzer chain */
   fft = make_element ("fftwspectrum", "fft");
@@ -226,7 +224,7 @@ run_loop (gchar *infile, gchar *outfile)
   gst_object_unref (audiopad);
   gst_bin_add (GST_BIN (pipeline), audio);
   
-  g_signal_connect (decoder, "new-decoded-pad", 
+  g_signal_connect (decoder, "pad-added", 
 		    G_CALLBACK (cb_newpad), audio);
   g_signal_connect (decoder, "unknown-type", 
 		    G_CALLBACK (cb_cantdecode), loop);

@@ -1,3 +1,7 @@
+2018-02-04  Tuomas Nurmi <tuomas at tuomas dot info>
+
+	* Ported to gstreamer 1.0
+
 2006-09-18  Joe Rabinoff  <bobqwatson at yahoo dot com>
 
 	* configure.ac:

@@ -18,12 +18,9 @@
 /* Since fftwspectrum and fftwunspectrum are supposed to be 
  * opposites, they'll be using the same caps: */
 
-#define SPECTRUM_SIGNAL_CAPS "audio/x-raw-float, " \
+#define SPECTRUM_SIGNAL_CAPS "audio/x-raw,format=(string) F32LE, " \
 			       "rate = (int) [ 1, MAX ], " \
-			       "channels = (int) 1, " \
-			       "endianness = (int) BYTE_ORDER, " \
-			       "width = (int) 32, " \
-			       "signed = (boolean) true"
+			       "channels = (int) 1" 
 
 /* audio/x-spectrum-complex-float is an array of complex floats. A
  * complex float is just a pair (r, i) of a real float and an

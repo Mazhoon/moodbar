@@ -74,7 +74,7 @@ plugin_init (GstPlugin * plugin)
  */
 GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
     GST_VERSION_MINOR,
-    "moodbar",
+    moodbar,
     "Frequency analyzer and converter plugin",
     plugin_init, VERSION, "GPL", "Moodbar", 
     "http://amarok.kde.org/wiki/Moodbar")
