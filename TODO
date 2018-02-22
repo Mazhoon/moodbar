@@ -1,0 +1,18 @@
+
+TODO Plugin:
+
+
+
+TODO Amarok:
+
+ * When storing moods with music, incremental scans are triggered 
+   every time a moodbar is analyzed.  Make this not happen.
+
+ * Scripting interface for e.g. full mood calcs
+ * User-defined moodbar themes, plus one theme based on the kde 
+   default colors
+ * Moodbar column in flat view mode
+ * Multiple moodbar processes
+ * When playing a dynamic playlist minimized, calculate the moods
+   of new songs that are added. (?)
+

@@ -1,0 +1,63 @@
+2006-09-18  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* configure.ac:
+	  Automatically install the GStreamer plugins in GStreamer's
+	  plugin dir (as reported by its .pc file), unless directed
+	  otherwise with the --with-plugindir option.
+	* INSTALL, README: reword to reflect the above change.
+	
+2006-09-02  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* analyzer/main.c: 
+          Check if the file we're analyzing has been modified since we started
+          analyzing it.  If so, re-do the analysis.  Amarok bug 133462.
+	
+2006-08-27  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* README, INSTALL: 
+	  Explicit instructions for installing into the same prefix as 
+	  GStreamer
+	* TOOD: things to do when I finally get my kde svn account
+	
+2006-08-25  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* plugin/gstfftwspectrum.c: 
+	  Changed "def_size" and "def_step" to "def-size" and "def-step"
+	* analyzer/main.c:
+	  More verbose error messages, directing the user to the webpage.
+	  This includes reporting when the decodebin can't decode a file.
+	* TODO: do the same for Amarok proper!
+	
+2006-08-23  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* RELEASE: clarified release procedure
+	* plugin/gstmoodbar.c: trivial bugfix and typo correction
+	
+2006-08-22  Aaron VonderHaar <avh4 at users dot sourceforge dot net>
+
+	* plugin/gstmoodbar.*: Added max-width property to scale down moodbar
+	  output
+	* analyzer/main.c: Set the max-width to 1000 pixels.
+
+2006-08-22  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* TODO: added a couple useful items
+	* plugin/spectrum.c (GST_PLUGIN_DEFINE): 
+	  updated the Moodbar plugin website URL
+	* plugin/*.c: 
+	  changed "example launch lines" to commands that will actually work
+	
+2006-08-14  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* Made SVN repository
+	* RELEASE: Updated release procedure to use SVN
+	* TODO: New file
+	
+2006-08-09  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* added the analyzer, repackaging
+	
+2006-08-04  Joe Rabinoff  <bobqwatson at yahoo dot com>
+
+	* initial creation of the plugin
+

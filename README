@@ -1,0 +1,34 @@
+
+Moodbar package
+---------------
+
+The moodbar package should be installed in the same prefix as
+gstreamer -- please see the INSTALL file for instructions on how to
+configure the moodbar package correctly.
+
+The Moodbar is an algorithm for creating a colorful visual
+representation of the contents of an audio file, giving an idea of its
+"mood" (this is a rather fanciful term for the simple analysis it
+actually does).  The Moodbar was invented by Gavin Wood and Simon
+O'Keefe for inclusion in the Amarok music player.
+
+This package contains a GStreamer plugin with elements that are used
+in the moodbar analysis, and an application that actually does the
+analysis.
+
+The plugin contains elements for performing forward and reverse
+Fourier transforms to an audio signal, and a couple of example
+analysis elements.  The included elements are:
+
+  fftwspectrum:   Convert a raw audio stream into a frequency spectrum
+  fftwunspectrum: Convert a frequency spectrum stream into a raw audio stream
+  spectrumeq:     Scale amplitudes of bands of a spectrum
+  moodbar:        Toy analysis plugin based on Gav Wood's Exscalibar
+
+The application is called moodbar.  Its syntax is:
+
+    moodbar -o [outfile] [infile]
+
+where [outfile] will contain the moodbar data, and [infile] is an audio
+file that gstreamer can decode.
+
