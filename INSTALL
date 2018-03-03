@@ -5,7 +5,7 @@ Quick Start
 To compile the moodbar package, run the following commands from the
 directory containing the configure script:
 
-  ./configure --prefix=`pkg-config --variable=prefix gstreamer-0.10`
+  ./configure --prefix=`pkg-config --variable=prefix gstreamer-1.0`
   make
   sudo make install
 

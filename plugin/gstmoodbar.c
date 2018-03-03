@@ -355,11 +355,7 @@ gst_moodbar_sink_event  (GstPad *pad, GstObject *parent, GstEvent *event)
     GstCaps *caps;
     gst_event_parse_caps (event, &caps);
     
-    gst_caps_ref(caps);
     gst_moodbar_set_sink_caps(pad, parent, caps);
-    gst_event_unref(event);
-    gst_object_unref (mood);
-    return TRUE;
   }
   
 
