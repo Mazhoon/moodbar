@@ -486,7 +486,7 @@ gst_fftwunspectrum_chain (GstPad * pad, GstObject *parent, GstBuffer * buf)
       gint i, num_others, extra = NUM_EXTRA_SAMPLES (conv);
       GstMapInfo binfo;
       gst_buffer_map(outbuf, &binfo, GST_MAP_WRITE);
-      gfloat *out = binfo.data;
+      gfloat *out = (gfloat *) binfo.data;
       gfloat start_weight, end_weight, weight, pct;
 
       /* Average the input data with the overlap.  This code is kind
@@ -567,7 +567,6 @@ gst_fftwunspectrum_chain (GstPad * pad, GstObject *parent, GstBuffer * buf)
   
   res = gst_pad_push (conv->srcpad, outbuf);
 
-out:
   gst_buffer_unref (buf);
 
   return res;

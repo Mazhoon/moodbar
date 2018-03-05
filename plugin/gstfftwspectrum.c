@@ -331,7 +331,6 @@ gst_fftwspectrum_set_sink_caps (GstPad * pad, GstObject *parent,  GstCaps * caps
   GstStructure *newstruct;
   gint rate;
   gboolean res;
-  gint size, step;
 
   conv = GST_FFTWSPECTRUM (parent);
 
@@ -558,7 +557,6 @@ gst_fftwspectrum_change_state (GstElement * element,
 {
   GstFFTWSpectrum *conv = GST_FFTWSPECTRUM (element);
   GstStateChangeReturn res;
-        GstCaps *srccaps;
 
   switch (transition)
     {
@@ -666,7 +664,7 @@ gst_fftwspectrum_chain (GstPad * pad, GstObject *parent, GstBuffer * buf)
         //GstCaps *caps = gst_pad_get_current_caps(conv->srcpad);
         outbuf=gst_buffer_new_allocate(NULL, OUTPUT_SIZE (conv), NULL);
       
-      gst_buffer_make_writable(outbuf);
+      outbuf = gst_buffer_make_writable(outbuf);
       gst_buffer_set_size(outbuf, OUTPUT_SIZE (conv));
       GST_BUFFER_OFFSET     (outbuf) = conv->offset;
       GST_BUFFER_OFFSET_END (outbuf) = conv->offset + conv->step;

@@ -279,7 +279,7 @@ gst_spectrumeq_set_property (GObject *object, guint prop_id, const GValue *value
 			 GParamSpec *pspec)
 {
   GstSpectrumEq *spec = GST_SPECTRUMEQ (object);
-  GValueArray *array;
+  GArray *array;
   GValue *val;
   guint i;
 
@@ -288,10 +288,10 @@ gst_spectrumeq_set_property (GObject *object, guint prop_id, const GValue *value
     case ARG_EQUALIZER:
       /* spec->bands should ALWAYS be allocated here */
       g_free (spec->bands);
-      array = (GValueArray *) g_value_get_boxed (value);
+      array = (GArray *) g_value_get_boxed (value);
 
       /* It doesn't make sense to have zero bands */
-      if (array->n_values == 0)
+      if (array->len == 0)
 	{
 	  spec->bands = (gfloat *) g_malloc (1 * sizeof (gfloat));
 	  spec->bands[0] = 1.0;
@@ -300,12 +300,12 @@ gst_spectrumeq_set_property (GObject *object, guint prop_id, const GValue *value
 
       else
 	{
-	  spec->numbands = array->n_values;
+	  spec->numbands = array->len;
 	  spec->bands = (gfloat *) g_malloc (spec->numbands * sizeof (gfloat));
 
 	  for (i = 0; i < spec->numbands; ++i)
 	    {
-	      val = g_value_array_get_nth (array, i);
+	      val = &g_array_index (array, GValue, i);
 	      spec->bands[i] = g_value_get_float (val);
 	    }
 	}
@@ -356,20 +356,20 @@ gst_spectrumeq_get_property (GObject *object, guint prop_id, GValue *value,
 			 GParamSpec *pspec)
 {
   GstSpectrumEq *spec = GST_SPECTRUMEQ (object);
-  GValueArray *array;
+  GArray *array;
   GValue val;
   guint i;
 
   switch (prop_id) 
     {
     case ARG_EQUALIZER:
-      array = g_value_array_new (spec->numbands);
+      array = g_array_sized_new (FALSE, TRUE, sizeof (GValue), spec->numbands);
       for (i = 0; i < spec->numbands; ++i)
 	{
 	  memset (&val, 0, sizeof (GValue));
 	  g_value_init (&val, G_TYPE_FLOAT);
 	  g_value_set_float (&val, spec->bands[i]);
-	  array = g_value_array_append (array, &val);
+	  array = g_array_append_val (array, val);
 	}
       g_value_take_boxed (value, array);
       break;
@@ -429,7 +429,7 @@ gst_spectrumeq_transform_ip (GstBaseTransform *base, GstBuffer *outbuf)
   
   GstMapInfo info;
   gst_buffer_map(outbuf, &info, GST_MAP_READWRITE);
-  data = info.data;
+  data = (gfloat *) info.data;
 
   for (i = 0; i < spec->numfreqs; ++i)
     {
