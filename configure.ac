@@ -10,7 +10,7 @@ dnl and 2... for a prerelease
 
 dnl when going to/from release please set the nano correctly !
 dnl releases only do Wall, cvs and prerelease does Werror too
-AS_VERSION(moodbar, GST_PLUGIN_VERSION, 0, 1, 3, 0,
+AS_VERSION(moodbar, GST_PLUGIN_VERSION, 0, 1, 4, 0,
     GST_PLUGIN_CVS="no", GST_PLUGIN_CVS="yes")
 
 dnl AM_MAINTAINER_MODE provides the option to enable maintainer mode

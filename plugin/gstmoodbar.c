@@ -524,7 +524,11 @@ normalize (gfloat *vals, guint numvals)
   if (!numvals) 
     return;
 
-  mini = maxi = vals[0];
+  int z=0;
+  do
+  {
+    mini = maxi = vals[0] = vals[z]; //sometimes, somewhy, [0] contains nan; this allows circumventing the problem and generating a proper mood
+  } while (isnan(vals[z++]));
 
   for (i = 1; i < numvals; i++)
     {
