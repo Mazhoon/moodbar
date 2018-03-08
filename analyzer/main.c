@@ -26,6 +26,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
 #define WEBPAGE "http://amarok.kde.org/wiki/Moodbar"
 
@@ -241,12 +242,18 @@ run_loop (gchar *infile, gchar *outfile)
   gst_object_unref (GST_OBJECT (pipeline));
 }
 
+/* normal g_print has problems with non-ascii characters */
+void print_no_encoding_conversion(const gchar *p)
+{
+    fputs(p, stdout);
+}
 
 gint
 main (gint argc, gchar *argv[])
 {
   gint tries;
 
+  g_set_print_handler(print_no_encoding_conversion);
   /* Command-line parsing */
   gchar *outfile = NULL, *infile = NULL;
   gchar **array = NULL;
