@@ -1,1 +1,3 @@
+# ignore meson build files, this asumes build is the directory
 
+build
