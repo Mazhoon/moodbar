@@ -1,4 +1,4 @@
-project('moodbar', 'c', version : '0.1.4')
+project('moodbar', 'c', version : '0.1.5')
 add_global_arguments('-DHAVE_CONFIG_H', language: 'c')
 
 build_cflags = ['-Wall']

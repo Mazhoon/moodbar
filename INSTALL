@@ -2,6 +2,20 @@
 Quick Start
 ===========
 
+
+To compile the moodbar package (post-0.1.4 git HEAD), run the following
+commands from the source directory:
+
+
+meson --buildtype plain build
+cd build
+ninja
+sudo ninja install
+
+
+--------------------------------------------------------------------
+Earlier instructions for 0.1.4 and older versions:
+
 To compile the moodbar package, run the following commands from the
 directory containing the configure script:
 

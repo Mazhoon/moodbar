@@ -16,8 +16,23 @@ For actual usage with complete music libraries, the Moodbar File Generation Scri
 
 Compiling and installing from a github checkout (or a .tar.gz) should work with command series:
 
+
+post 0.1.4 (git HEAD):
+
+`meson --buildtype plain build`
+
+`cd build`
+
+`ninja`
+
+`sudo ninja install`
+
+
+0.1.4 and earlier:
+
 ``./autogen.sh  --prefix=`pkg-config --variable=prefix gstreamer-1.0` ``
 
 `make`
 
 `sudo make install`
+
