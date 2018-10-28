@@ -1,0 +1,1 @@
+option('plugindir', type: 'string', description: 'install GStreamer plugins in DIR')
